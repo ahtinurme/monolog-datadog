@@ -11,6 +11,7 @@ use Exception;
 use Monolog\Handler\Curl\Util;
 
 use Monolog\Formatter\JsonFormatter;
+use Monolog\LogRecord;
 
 /**
  * Sends logs to Datadog Logs using Curl integrations
@@ -68,9 +69,9 @@ class DatadogHandler extends AbstractProcessingHandler
     /**
      * Handles a log record
      */
-    protected function write(array $record): void
+    protected function write(LogRecord $record): void
     {
-        $this->send($record['formatted']);
+        $this->send($record->formatted);
     }
 
     /**
